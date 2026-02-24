@@ -13,7 +13,7 @@ public class MedicionesService {
     @Autorawired
     private MedicionesRepository medicionesRepository;
 
-    @Autorawired
+    @Autorawired    
     private DispositivosRepository dispositivosRepository;
 
     public void setMedicionRepository(MedicionesRepository medicionesRepository) {
@@ -38,7 +38,7 @@ public class MedicionesService {
         medicionesRepository.getMedicion().setIdDelDispositivo(null);
     }
 
-    public list<Mediciones> getAllMediciones() {
+    public List<Mediciones> getAllMediciones() {
         return List.of(medicionesRepository.getMedicion());
     }
 
