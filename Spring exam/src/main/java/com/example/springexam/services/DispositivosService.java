@@ -12,5 +12,8 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 public class DispositivosService {
-    
+
+    public List<Dispositivos> findAll() {
+        return null;
+    }
 }

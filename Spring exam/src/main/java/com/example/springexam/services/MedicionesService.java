@@ -49,5 +49,8 @@ public class MedicionesService {
             return null;
         }
     }
-    
+
+    public List<Mediciones> findAll() {
+        return List.of(medicionesRepository.getMedicion());
+    }
 }

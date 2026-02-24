@@ -93,5 +93,11 @@ public class Dispositivos {
     public void setTimeTolerance(long timeTolerance) {
         this.timeTolerance = timeTolerance;
     }
+
+
+    public void setMediciones(List<Mediciones> medicionesSeleccionadas) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setMediciones'");
+    }
     
 }

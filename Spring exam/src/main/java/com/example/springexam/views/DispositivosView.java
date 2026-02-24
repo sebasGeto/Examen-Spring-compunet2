@@ -31,7 +31,10 @@ public class DispositivosView {
 
         builder.append("Mediciones:<br>");
 
-
+        Iterable<? extends Mediciones> mediciones = null;
+        for (Mediciones medicion : mediciones) {
+            builder.append("<input type='checkbox' name='medicionId' value='" + medicion.getId() + "'/> " + medicion.getValor() + "<br>");
+        }
 
 
     }

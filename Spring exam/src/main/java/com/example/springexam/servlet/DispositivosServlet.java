@@ -32,6 +32,38 @@ public class DispositivosServlet extends HttpServlet {
         medicionesService = context.getBean(MedicionesService.class);
         dispositivosView = context.getBean(DispositivosView.class);
         encoder = new Gson();
-    }   
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<Dispositivos> dispositivos = dispositivosService.findAll();
+        List<Mediciones> mediciones = medicionesService.findAll();
+        Dispositivos fouDispositivos = null;
+        String html = dispositivosView.listDispositivos(dispositivos, mediciones, fouDispositivos);
+        resp.setContentType("text/html");
+        resp.getWriter().write(html);
+    }
+
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String dispositivoName = req.getParameter("dispositivoName");
+        String[] medicionIds = req.getParameterValues("medicionId");
+
+        List<Mediciones> medicionesSeleccionadas = new ArrayList<>();
+        if (medicionIds != null) {
+            for (String medicionId : medicionIds) {
+                Mediciones medicion = medicionesService.getMedicionById(Integer.parseInt(medicionId));
+                if (medicion != null) {
+                    medicionesSeleccionadas.add(medicion);
+                }
+            }
+        }
+
+        Dispositivos nuevoDispositivo = new Dispositivos(null, dispositivoName, dispositivoName, dispositivoName, 0, 0, 0);
+        nuevoDispositivo.setName(dispositivoName);
+        nuevoDispositivo.setMediciones(medicionesSeleccionadas);
+
+        resp.sendRedirect("/dispositivos"); 
+
+    }
     
 }
